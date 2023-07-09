@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+    void printBinary(int  num){
+        for(int i=10;i>=0;--i){
+            cout<<((num>>i)&1);
+        }
+        cout<<endl;
+    }
+    int main(){
+    int num;
+    cout<<"enter the number";
+    cin>>num;
+    printBinary(num);
+    int i=1;
+    if((num&(1<<i))!=0)
+    {
+        cout<<"the bit is set"<<endl;
+    }
+    else{
+        cout<<"the bit is not set"<<endl;
+    }
+    //set the bit ith bit
+    printBinary(num|(1<<i));
+    // unset the ith bit
+    printBinary(num&(~(1<<i)));
+    //toggle
+    printBinary(num^(1<<i));
+    //count set bits
+    int count=0;
+      for(int i=31;i>=0;--i){
+          if((num&(1<<i))!=0){
+              count ++;
+          }
+      }
+      cout<<"total set bits in the number is"<<endl<<count;
+    return 0; 
+}
