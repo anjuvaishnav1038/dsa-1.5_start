@@ -1,0 +1,13 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    cout<<INT_MAX<<endl;
+    // It is out of the range of the integer
+    // cout<<((1<<32)-1
+    //signed int 
+    cout<<"maximum number of the signed integer"<<((1LL<<31)-1)<<endl;
+    unsigned int a=((1LL<<32)-1);
+    cout<<"maximum number of the unsigned integer"<<a<<endl;
+    return 0;
+}
