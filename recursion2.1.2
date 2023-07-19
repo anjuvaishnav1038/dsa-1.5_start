@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+void printArray(int arr[],int n){
+  //base condition:stoping condition
+  if(n==0){
+    return;
+  }
+  //processing
+  //ekk case solve krdo 
+  cout<<arr[0]<<" ";
+  //bakki recursion smbhal lega
+  //recursive relation
+  printArray(arr+1,n-1);
+}
+
+int main() {
+int arr[5]={10,20,30,40,50};
+int n=5;
+printArray(arr,n);
+  return 0;
+}
