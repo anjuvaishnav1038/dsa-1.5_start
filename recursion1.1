@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+void printreverseCounting(int n){
+  //base case
+  if(n==0){
+    return ;
+  }
+  //processing
+cout<<n<<" ";
+//recursive relation
+printreverseCounting(n-1);
+}
+int main() {
+int n;
+cin>>n;
+printreverseCounting(n);
+return 0;
+}
