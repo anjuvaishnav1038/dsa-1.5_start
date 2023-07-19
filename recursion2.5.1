@@ -1,0 +1,27 @@
+//find key index in  the other string using recursion
+#include <iostream>
+using namespace std;
+int checkkey(string str,int i,int n,char key){
+  //base case
+  //poori array trverse key badd bhi ki ni mili
+  if(i>=n){
+    return -1;
+  }
+  //ekk case solve krdo
+  if(str[i]==key){
+    return i;
+  }
+  //bakki recursion smbhal lega
+  int ans=checkkey( str,i+1,n,key);
+  return ans;
+}
+
+int main() {
+int i=0;
+string str="googlebaba";
+int n=str.length();
+char key='l';
+int l=checkkey( str,i+1,n,key);
+cout<<l;
+  return 0;
+}
