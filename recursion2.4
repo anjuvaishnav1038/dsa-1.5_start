@@ -1,0 +1,28 @@
+//minimum elemnt in an array by  the help of the recursion
+#include <iostream>
+#include<limits.h>
+using namespace std;
+void minimumElement(int arr[],int n,int i,int & mini)
+{
+  //base case
+  if(i>=n){
+    //agr array khtm ho gya hh means poora travers ho gya hh toh vapas ajayo
+    return;
+  }
+  //ekk case solve krdo
+  //current elemnt ko check kro for mini
+ if(arr[i]<mini){
+    mini=arr[i];
+  }
+  //bakki recursion smbhal lega
+  minimumElement(arr,n,i+1,mini);
+}
+int main() {
+int arr[5]={81,40,89,45,1};
+int n=5;
+int mini=INT_MAX;
+int i=0;
+minimumElement(arr,n,i,mini);
+cout<<"minimum element in the given array is "<<mini;
+return 0;
+}
