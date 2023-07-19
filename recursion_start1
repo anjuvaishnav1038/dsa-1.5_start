@@ -1,0 +1,22 @@
+
+#include <iostream>
+using namespace std;
+int factorial(int n){
+  //base case
+  if(n==1)
+  return 1;
+  else{
+    //processing
+    int chotiproblem=factorial(n-1);
+    int badiproblem=n*chotiproblem;
+    return badiproblem;
+  }
+}
+
+int main() {
+  int n;
+  cin>>n;
+ int ans= factorial(n);
+ cout<<ans;
+  return 0;
+}
