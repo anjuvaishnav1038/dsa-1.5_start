@@ -1,0 +1,28 @@
+//maximum elemnt in an array by  the help of the recursion
+#include <iostream>
+#include<limits.h>
+using namespace std;
+void maximumElement(int arr[],int n,int i,int & maxi)
+{
+  //base case
+  if(i>=n){
+    //agr array khtm ho gya hh means poora travers ho gya hh toh vapas ajayo
+    return;
+  }
+  //ekk case solve krdo
+  //current elemnt ko check kro for max
+ if(arr[i]>maxi){
+    maxi=arr[i];
+  }
+  //bakki recursion smbhal lega
+  maximumElement(arr,n,i+1,maxi);
+}
+int main() {
+int arr[5]={81,40,89,45,1};
+int n=5;
+int maxi=INT_MIN;
+int i=0;
+  maximumElement(arr,n,i,maxi);
+cout<<"maximum element in the given array is "<<maxi;
+return 0;
+}
