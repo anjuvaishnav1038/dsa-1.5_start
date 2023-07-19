@@ -1,0 +1,21 @@
+//Print Digits using recurrsion
+#include <iostream>
+using namespace std;
+void printDigit(int &n){
+  //base condition
+  if(n==0){
+    return;
+  }
+  //ekk case solve krdo
+  int digit=n%10;
+  //baki recursion smbhal lega
+  int newValue=n/10;
+  printDigit(newValue);
+  cout<<"digit-->"<<digit<<endl;
+}
+int main() {
+  int n;
+  cin>>n;
+  printDigit(n);
+  return 0;
+}
