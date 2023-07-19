@@ -1,0 +1,28 @@
+//find key index  of all the occurances in  the other string using recursion
+#include <iostream>
+#include<vector>
+using namespace std;
+void checkkey(string str,int i,int &n,char &key, vector<int>&ans){
+  if(i>=n){
+    return ;
+  }
+  //ekk case solve krdo
+  if(str[i]==key){
+ans.push_back(i);
+  }
+  // bakki reccurrsion smbhal lega
+checkkey( str,i+1,n,key,ans);   
+}
+
+int main() {
+int i=0;
+vector<int>ans;
+string str="googlebaba";
+int n=str.length();
+char key='o';
+checkkey( str,i,n,key,ans);
+for(int i=0;i<ans.size();i++){
+  cout<<ans[i]<<" ";
+}
+  return 0;
+}
