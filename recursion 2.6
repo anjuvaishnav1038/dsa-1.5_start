@@ -16,6 +16,9 @@ void printDigit(int &n){
 int main() {
   int n;
   cin>>n;
+  //handling zero separately
+  if(n==0)
+  cout<<0<<endl;
   printDigit(n);
   return 0;
 }
