@@ -1,0 +1,15 @@
+//reverse string using recursion
+#include<iostream>
+using namespace std;
+void reverse(string &str,int i){
+  if(i<0)
+  return ;
+  cout<<str[i];
+  reverse(str,i-1);
+}
+int main(){
+  string str="anju";
+  int i=str.size();
+  reverse(str,i);
+  return 0;
+}
