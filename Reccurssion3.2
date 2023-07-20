@@ -1,0 +1,25 @@
+//print all the subsquencees of the string using recurrsion
+#include<iostream>
+#include<string>
+using namespace std;
+void  printsubsquence(string str,string output,int i){
+  //base case
+  if(i>=str.length()){
+    cout<<output<<endl;
+    return;
+  }
+  //exclude
+ printsubsquence(str,output,i+1);
+
+//include
+output.push_back(str[i]);
+ printsubsquence(str,output,i+1);
+}
+int main(){
+  int count=0;
+  string str="abcdef";
+  string output="";
+  int i=0;
+  printsubsquence(str,output,i);
+  return 0;
+}
