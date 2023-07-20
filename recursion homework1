@@ -16,7 +16,7 @@ int lastOccurance(string str,char ch,int i,int &ans){
 int main(){
   int i=0;
   int ans;
-  string str="lovesadlifefoggikutta";
+  string str="love";
   char ch='o';
 ans= lastOccurance(str,ch,i,ans);
   cout<<"last occurrance of the character "<<ans;
