@@ -1,0 +1,24 @@
+// last occurrance of a character in the string using reccursion
+#include<iostream>
+#include<string>
+using namespace std;
+int lastOccurance(string str,char ch,int i,int &ans){
+  //base case
+  if(i>str.size())
+  return -1;
+  //ekk case khud solve krdo 
+  if(ch==str[i])
+  ans=i;
+  // bakii recurrsion smbhal lega
+  lastOccurance(str,ch,i+1,ans);
+  return ans;
+}
+int main(){
+  int i=0;
+  int ans;
+  string str="lovesadlifefoggikutta";
+  char ch='o';
+ans= lastOccurance(str,ch,i,ans);
+  cout<<"last occurrance of the character "<<ans;
+  return 0;
+}
