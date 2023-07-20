@@ -1,0 +1,33 @@
+//implementing binary search using reccurrsion
+#include<iostream>
+#include<vector>
+using namespace std;
+int binarysearch(vector<int>&v,int start,int end,int &target){
+  //base case
+  //case 1:key not found
+ if(start>end){
+  return -1;
+ }
+ //key found
+ int mid=(start+end)/2;
+ if(v[mid]==target){
+  return mid;}
+  //if arr[mid]<key-->right search
+  if(v[mid]<target){
+   return binarysearch(v,mid+1,end,target);
+  }
+  //if(arr[mid]>key-->left search)
+  else if(v[mid]>target){
+    return binarysearch(v,start,mid-1,target);
+  }
+}
+int main(){
+  vector<int>v={10,20,60,70};
+  int n=v.size();
+  int target=400;
+  int start=0;
+  int end=n-1;
+  int ans= binarysearch(v,start,end,target);
+  cout<<"Target found at index "<<ans;
+  return 0;
+}
