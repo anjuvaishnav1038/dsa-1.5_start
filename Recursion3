@@ -1,0 +1,27 @@
+//check wheather array is sorted or not by recurrsion
+#include<iostream>
+#include<vector>
+using namespace std;
+bool checksorted(vector<int>&v,int &n,int i){
+  //base case
+  if(i==n-1)
+  return true;
+  //ekk case solve krdo
+  if(v[i+1]<v[i])
+  return false;
+  //bakki recursion smbhal lega
+  return checksorted(v,n,i+1);
+}
+int main(){
+  int i=0;
+  vector<int>v={10,30,40,50};
+  int n=v.size();
+  bool issorted=checksorted(v,n,i);
+  if(issorted==true){
+    cout<<"Array is sorted";
+  }
+  else{
+    cout<<"Array is not sorted";
+  }
+  return 0;
+}
