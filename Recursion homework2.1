@@ -1,0 +1,21 @@
+  //reverse string using recurrsion
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+void reversestring(string &str,int start,int end){
+  //base case
+  if(start>end){
+    return ;
+  }
+  //ekk case solve krdo
+  swap(str[start],str[end]);
+  //bakki recursion smbhal lega
+  reversestring(str, start+1, end-1);
+}
+int main(){
+string str="canada";
+  reversestring(str, 0, str.size()-1);
+  cout<<str;
+  return 0;
+}
