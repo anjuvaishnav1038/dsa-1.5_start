@@ -1,0 +1,19 @@
+#House robber problem using recursion based on the pattern of include  exclude
+class Solution {
+public:
+    int robber(vector<int>&nums,int i){
+        //base case
+        if(i>=nums.size())
+        return 0;
+        //ekk case solve krdo
+        // include
+       int rob_Amount_1=nums[i]+robber(nums,i+2);
+        // exclude
+       int rob_Amount_2= 0+robber(nums,i+1);
+       return max(rob_Amount_1,rob_Amount_2);
+    }
+    int rob(vector<int>& nums) {
+        int i=0;
+      return robber(nums,i);
+    }
+};
