@@ -1,0 +1,29 @@
+#buy and stock  problem using recursion
+class Solution {
+public:
+    void maxprofit_Finder(vector<int>& prices,int i,int &min_Price,int& max_Profit){
+      
+        //base case
+        if(i>=prices.size())
+        return;
+        //ekk case solve krdo
+        if(prices[i]<min_Price){
+            min_Price=prices[i];
+        }
+        int Todays_profit=prices[i]-min_Price;
+        if(Todays_profit>max_Profit)
+        {
+            max_Profit=Todays_profit;
+        }
+        //bakki recursion smbhal lega
+        maxprofit_Finder(prices,i+1,min_Price,max_Profit);
+    }
+    int maxProfit(vector<int>& prices) {
+        int min_Price=INT_MAX;
+        int max_Profit=INT_MIN;
+        int i=0;
+        maxprofit_Finder(prices,0,min_Price,max_Profit);
+        return max_Profit;
+        
+    }
+};
