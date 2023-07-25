@@ -1,0 +1,29 @@
+//perfect square LEETCODE
+class Solution {
+public:
+   int numSquareHelper(int n){
+         //base case
+        if(n==0)
+        return 1;
+        //base case
+        if(n<0)
+        return 0;
+        int i=1;
+        int ans=INT_MAX;
+       int end=sqrt(n);
+        while(i<=end){
+        int perfectSquare=i*i;
+        int numberOfPerfectSquares=1+ numSquareHelper(n-perfectSquare);
+        if(numberOfPerfectSquares<ans)
+        ans=numberOfPerfectSquares;
+        i++;
+        }
+        return ans;
+   }
+    int numSquares(int n) {
+      return  numSquareHelper(n)-1;
+
+    }
+    //time complexity-->O(n^n)
+    //space complexity-->O(n)
+};
