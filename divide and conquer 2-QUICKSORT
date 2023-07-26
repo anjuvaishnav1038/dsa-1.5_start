@@ -19,7 +19,7 @@ int partition(int *arr,int s,int e){
   int i=s;
   int j=e;
   while(i<pivotIndex && j>pivotIndex){
-    while(arr[i]<pivotElement){
+    while(arr[i]<=pivotElement){
     i++;}
     while(arr[j]>pivotElement){
     j--;
