@@ -1,0 +1,97 @@
+//n-Queen optimization using map
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+using namespace std;
+unordered_map<int,bool>rowCheck;
+unordered_map<int,bool>upperLeftDiagonalCheck;
+unordered_map<int,bool>BottomLeftDiagonalCheck;
+ void printSolution(vector<vector<char>>&board,int n){
+    for(int i=0;i<n;i++){
+      for(int j=0;j<n;j++){
+        cout<<board[i][j]<<" ";
+      }
+      cout<<endl;
+    }
+    cout<<endl<<endl;
+  }
+  bool isSafe(int row,int col,vector<vector<char>>&board,int n){
+  if(rowCheck[row]==true)
+    return false;
+  if(upperLeftDiagonalCheck[n-1+col-row]==true)
+  return false;
+  if(BottomLeftDiagonalCheck[row+col]==true)
+  return false;
+
+  return true;
+
+
+
+    //hum check krna chate hh ki current cell[row,col] prr queen place kr skte hh ya nhi
+  // int i=row;
+  // int j=col;
+// //check row
+// // j ko piche leyjate rhna hh 
+// while(j>=0){
+// if(board[i][j]=='Q')
+// return false;
+// j--;
+// }
+// //check upperLeftDiagonal
+// i=row;
+// j=col;
+// while(i>=0 && j>=0){
+//   if(board[i][j]=='Q')
+//   return false;
+//   i--;
+//   j--;
+// }
+// //check bottom left Diagonal
+// i=row;
+// j=col;
+// while(i<n && j>=0){
+// if(board[i][j]=='Q')
+// return false;
+// i++;
+// j--;
+// }
+// //khi prr bhi queen nhi mili
+// //iska mtlb ye position safe hh
+// //it means return krdo true
+// return true;
+  }
+void solve(vector<vector<char>>&board,int col,int n){
+  //base case
+  //agr hmne sari jgh queen place krke dekh li hh
+  if(col>=n){
+    printSolution(board,n);
+    return ;
+  }
+  //ekk case solve krna hh bakki recursion smbhal lega
+  //hmm every row mey queen place krne ka try krr rhe hh
+  for(int row=0;row<n;row++){
+    if(isSafe(row,col,board,n)){
+      //toh place krdo queen ko
+      board[row][col]='Q';
+      rowCheck[row]=true;
+      upperLeftDiagonalCheck[n-1+col-row]=true;
+      BottomLeftDiagonalCheck[row+col]=true;
+      //recursion solution layega
+      solve(board,col+1,n);
+      //backtracking
+      board[row][col]='-';
+      rowCheck[row]=false;
+      upperLeftDiagonalCheck[n-1+col-row]=false;
+      BottomLeftDiagonalCheck[row+col]=false;
+
+    }
+  }
+}
+int main(){
+  int n=4;
+  vector<vector<char>>board(n,vector<char>(n,'-'));
+  // 0-->Empty Cell
+  //1-->Queen at this Cell
+  int col=0;
+  solve(board,col,n);
+}
