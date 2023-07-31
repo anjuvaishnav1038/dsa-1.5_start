@@ -1,0 +1,35 @@
+//Distribute Repeating Integers--LEETCODE
+class Solution {
+public:
+bool canDistribute_Helper(vector<int>&count,vector<int>&quantity,int ithCustomer){
+    //base condition
+    if(ithCustomer==quantity.size()){
+        return true;
+    }
+    for(int i=0;i<count.size();i++){
+        if(count[i]>=quantity[ithCustomer]){
+            count[i]=count[i]-quantity[ithCustomer];
+            //abb next customer ko assign krenge
+            if(canDistribute_Helper(count,quantity,ithCustomer+1)){
+                return true;
+            }
+            //backtrack
+            count[i]=count[i]+quantity[ithCustomer];
+        }
+    }
+    return false;
+}
+    bool canDistribute(vector<int>& nums, vector<int>& quantity) {
+        unordered_map<int,int>countMap;
+        for(auto num:nums){
+            countMap[num]++;
+        }
+        vector<int>count;
+        for(auto it:countMap){
+            count.push_back(it.second);
+        }
+        //sort in decreasing order
+        sort(quantity.rbegin(),quantity.rend());
+        return canDistribute_Helper(count,quantity,0);
+    }
+};
