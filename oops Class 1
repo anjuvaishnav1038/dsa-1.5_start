@@ -1,0 +1,46 @@
+//basic code of oops
+#include <iostream>
+using namespace std;
+class Animal{
+  private:
+  int weight;
+  public:
+  //state or property
+  int age;
+  string name; 
+
+  //behaviour-->functions
+  void eat(){
+cout<<"Eating"<<endl;
+  }
+  void sleep(){
+cout<<"Sleeping"<<endl;
+  }
+  //getter
+  int getWeight()
+{
+  return weight;
+}
+//setter
+void setWeight(int w){
+  weight=w;
+}
+};
+int main() {
+  // cout <<sizeof(Animal)<< endl;
+  //object Creation
+
+  //static
+  Animal ramesh;
+  ramesh.age=12;
+  ramesh.name="Lion";
+  cout<<"Age of ramesh "<<ramesh.age<<endl;
+cout<<"name of ramesh "<<ramesh.name<<endl;
+ramesh.eat();
+ramesh.sleep();
+//to acess private member
+ramesh.setWeight(101);
+cout<<"Weight "<<ramesh.getWeight()<<endl;
+  //Dyanmic
+  return 0;
+}
