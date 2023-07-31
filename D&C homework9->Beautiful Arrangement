@@ -1,0 +1,39 @@
+//BEAUTIFUL ARRANGEMENT-->LEETCODE
+class Solution {
+public:
+    void countArrangement_Helper(vector<int>&v,int &n,int &ans,int currentNum){
+        //base case
+        //agr sarey number rkh gye hh
+        if(currentNum==n+1){
+            // for(int i=i;i<=n;i++){
+            //     cout<<v[i]<<" ";
+            // }
+            // cout<<endl;
+            ++ans;
+            return;
+        }
+       //sarri positions prr iterate krne ke liye
+        for(int i=1;i<=n;i++){
+            //v[i]==0 means wo position khali hh or vha prr mey rkh skti hu elemnt
+        if(v[i]==0 &&((currentNum%i==0) || (i%currentNum==0))){
+            //ekk number mene rkh liya
+          v[i]=currentNum;
+          //abb bakki number recursion rkhega
+          countArrangement_Helper(v,n,ans,currentNum+1);
+          //agr wo number nii rkha gya
+          //toh uss number ko hmm jvha sey hta denge
+          v[i]=0; //backtracking
+
+
+        }
+        }
+    }
+    int countArrangement(int n) {
+        //n+1->size isliye kyuki 1-based indexing hh
+        vector<int>v(n+1);
+        int ans=0;
+        int currentNum=1;
+        countArrangement_Helper(v,n,ans,currentNum);
+        return ans;
+    }
+};
