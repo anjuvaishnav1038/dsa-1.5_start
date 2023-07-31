@@ -1,0 +1,117 @@
+//basic code of oops-->Destructor
+#include <iostream>
+using namespace std;
+class Animal{
+  private:
+  int weight;
+  public:
+  //state or property
+  int age;
+  string name; 
+  string type;
+  //Default constructor
+  Animal(){
+      this->weight=0;
+      this->age=0;
+      this->type="";
+      cout<<"Constructor called"<<endl;
+  }
+  //Parameterized Constructor
+  Animal(int age){
+      this->age=age;
+      cout<<"Parameterized constructor has been called"<<endl;
+  }
+  //copy Constructor
+  Animal(Animal &obj){
+     this->age=obj.age;
+     this->weight=obj.weight;
+     this->type=obj.type;
+     cout<<"I am inside the copy constructor"<<endl;
+     
+  }
+  //behaviour-->functions
+  void eat(){
+cout<<"Eating"<<endl;
+  }
+  void sleep(){
+cout<<"Sleeping"<<endl;
+  }
+  //getter
+  int getWeight()
+{
+  return weight;
+}
+void print(){
+    cout<<this->age<<" ";
+    cout<<this->weight<<" ";
+    cout<<this->type<<" ";
+    cout<<endl;
+    
+}
+//CALL DESTRUCTOR
+~Animal(){
+    cout<<"I amm inside destrucutor"<<endl;
+}
+//setter
+void setWeight(int weight){
+    // this->weight ye private member wala weight hh
+ this->weight=weight;
+}
+};
+int main() {
+  // cout <<sizeof(Animal)<< endl;
+  //object Creation
+
+  //static
+//   Animal ramesh;
+//   ramesh.age=12;
+//   ramesh.name="Lion";
+//   cout<<"Age of ramesh "<<ramesh.age<<endl;
+// cout<<"name of ramesh "<<ramesh.name<<endl;
+// ramesh.eat();
+// ramesh.sleep();
+// //to acess private member
+// ramesh.setWeight(101);
+// cout<<"Weight "<<ramesh.getWeight()<<endl;
+  //Dyanmic memory allocation
+//   Animal*suresh=new Animal;
+//   (*suresh).age=12;
+//   (*suresh).type="billi";
+// //alternate
+// suresh->age=70;
+// suresh->type="billi";
+// suresh->eat();
+// suresh->sleep();
+// Animal a;
+// // Animal v(10);
+// Animal*b=new Animal();
+// // Animal*c=new Animal(100);
+// //object copy
+// Animal c=a;
+// // Animal animal1(c);
+// Animal d(*b);
+// Animal a;
+// a.age=20;
+// a.setWeight(101);
+// a.type="babbar";
+// Animal b=a;
+// cout<<"a-> ";
+// a.print();
+// cout<<"b-> ";
+// b.print();
+// a.type[0]='G';
+// cout<<"a-> ";
+// a.print();
+// cout<<"b-> ";
+// b.print();
+cout<<"a object creation"<<endl;
+Animal a;
+a.age=5;
+
+cout<<"b object creation "<<endl;
+Animal *b=new Animal();
+b->age=15;
+//Manually destructor call krna pdega
+delete b;
+  return 0;
+}
