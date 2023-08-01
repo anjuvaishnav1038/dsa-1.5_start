@@ -1,0 +1,86 @@
+//--const Keyword--//
+#include<iostream>
+using namespace std;
+class abc{
+  int x;
+// mutable int x;
+  int *y;
+  int z;
+  public:
+//   abc(){
+//       x=0;
+//       y=new int(0);
+//   }
+   abc(int _x,int _y,int _z=0){
+      x=_x;
+    //   *y=_y;
+    y=new int(_y);
+    z=_z;
+    
+  }
+  int getX() const{
+    //   x=100;
+      return x;
+  }
+  void setX(int _val){
+      x=_val;
+  }
+  int getY() const{
+    //   int f=20;
+    //   y=&f;
+      return *y;
+  }
+  void setY(int _val){
+      *y=_val;
+  }
+  int getZ() const{
+      return z; 
+  }
+};
+void printABC(const abc&a){
+    cout<<a.getX()<<" "<<a.getY()<<" "<<a.getZ()<<endl;
+}
+int main(){
+    abc a(1,2,3);
+    printABC(a);
+    // cout<<a.getX()<<endl;
+    // cout<<a.getY()<<endl;
+    
+    return 0;
+}
+int main2(){
+    const int x=9;// x is constant
+    //purana method to change the value but nowtimes it is not useful
+    // int *p=&x;
+    // *p=8;
+    //2. const with pointers
+    // const int *a=new int(3);//const data or non const pointer
+    // int const *a=new int(3);//same as line10
+    // cout<<*a<<endl;
+    // //   *a=2;cannot change the content of the pointer
+    // int b=20;
+    // a=&b;//but pointer itself can be reassigned
+    // cout<<*a;
+    
+    // delete a;
+    // int b=5;
+    // a=&b;
+    
+    
+    //CONST pointer non-constant data
+    // int*const a=new int(2);
+    // *a=90;//abb chll jayega
+    // cout<<*a;
+    // int b=50;
+    // a=&b;//nhi chlega kyuki pointer constant hh
+    
+    //constant pointer constant data
+    // const int *const a=new int(10);
+    // cout<<*a;
+    // *a=50; //nhi chlega
+    // int b=90;
+    // a=&b;//nii chlega
+    
+
+    return 0;
+}
