@@ -1,0 +1,33 @@
+//---Static keyword in c++--//
+#include<iostream>
+using namespace std;
+class abc{
+    public:
+    // static int x,y;
+    int x,y;
+    //intialization list
+    abc():x(0),y(0){}
+ static void print(){
+        //this pointer
+        // cout<<this->x<<" "<<this->y<<endl;
+        // cout<<x<<" "<<y<<endl;
+        //NO THIS pointer accessible
+        printf("I am in Static %s\n",__FUNCTION__);
+    }
+};
+// int abc::x;
+// int abc::y;
+int main(){
+    // abc obj1={1,2};
+    // abc obj2={4,5};
+    abc obj1;
+    // abc::x=1;
+    // abc::y=2;
+    abc::print();
+    abc obj2;
+    // abc::x=10;
+    // abc::y=20;
+    abc::print();
+    
+    return 0;
+}
