@@ -1,0 +1,33 @@
+//  -----FUNCTION OVERRIDING----  //
+#include<iostream>
+using namespace std;
+class Animal{
+    public:
+   virtual void speak(){
+        cout<<"speaking"<<endl;
+    }
+};
+class dog:public Animal{
+    public:
+    //function overriding
+  void speak(){
+      cout<<"barking"<<endl;
+  }  
+};
+int main(){
+    // dog d;
+    // d.speak();
+    // Animal a;
+    // a.speak();
+    // Animal *a=new Animal;
+    // a->speak();
+    // dog *c=new dog;
+    // c->speak();
+    // UPCASTING
+  Animal *a=new dog;
+    a->speak();
+    //downcasting
+    dog *b=(dog*)new Animal;
+   b->speak();
+   return 0;
+}
