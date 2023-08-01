@@ -1,0 +1,21 @@
+//--------MACROS----//
+#include<iostream>
+#define PI 3.14158 //macro
+#define MAXX(x,y)(x>y?x:y)
+using namespace std;
+float CircleArea(float r){
+    return PI*r*r;
+}
+float CirclePerimeter(float r){
+    return 2*PI*r;
+}
+void fun(){
+    int x=6;
+    int y=17;
+    int c=MAXX(x,y);
+}
+int main(){
+   cout<<CircleArea(65.4)<<endl;
+   cout<<CirclePerimeter(65.4)<<endl;
+   
+  return 0;}
