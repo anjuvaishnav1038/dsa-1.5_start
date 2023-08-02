@@ -1,0 +1,35 @@
+//---Can constructor and destructor made private---//
+#include<iostream>
+using namespace std;
+class Box{
+//intialization list
+    Box(int _w):width(_w){};
+  int width;
+  public:
+  
+  //getter
+  int getWidth()const{
+    return width;
+  }
+  //setter
+  void  setWidth(int _val){
+     width=_val;
+  }
+  friend class BoxFactory;
+};
+class BoxFactory{
+int count;
+public:
+Box getABox(int _w){
+  count++;
+  return Box(_w);
+}
+};
+int main(){
+// Box b(5);
+// cout<<b.getWidth()<<endl;
+BoxFactory bfact;
+Box b=bfact.getABox(10);
+cout<<b.getWidth()<<endl;
+return 0;
+}
