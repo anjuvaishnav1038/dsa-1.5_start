@@ -1,0 +1,21 @@
+//---Basic structure of Linked List---//
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*next;
+  //constructor
+  Node(){
+    this->data=0;
+    this->next=NULL;
+  }
+  Node(int data){
+    this->data=data;
+    this->next=NULL;
+  }
+};
+int main(){
+ //object creation dyanimicall
+ Node*head=new Node;
+}
