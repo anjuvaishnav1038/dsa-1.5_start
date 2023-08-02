@@ -1,0 +1,31 @@
+//---Can we made virtual constructor(ctor)-NO---//
+// Can we made virtual destructor(dtor)-YES
+#include<iostream>
+using namespace std;
+class Base{
+  public:
+Base(){
+cout<<"Base Ctor"<<endl;
+}
+virtual~Base(){
+cout<<"Base Dtor"<<endl;
+}
+};
+class derived:public Base{
+  int*a;
+  public:
+derived(){
+  a=new int[10000];
+  cout<<"derived ctor"<<endl;
+}
+~derived(){
+  delete[] a;
+  cout<<"derived dtor"<<endl;
+}
+};
+int main(){
+  Base *b=new derived();
+  delete b;
+  return 0;
+
+}
