@@ -1,0 +1,30 @@
+
+#include<iostream>
+#if !defined(Bird_h)
+#define Bird_h
+class Bird{
+  public:
+  virtual void eat()=0;
+  virtual void fly()=0;
+  //classes that inherits this class
+  //has to implement this pure virtual function
+};
+class sparrow:publc Bird{
+  public:
+  void eat(){
+    std::cout<<"sparrow is eating\n"<<endl;
+  }
+   void fly(){
+    std::cout<<"sparrow is flying\n"<<endl;
+  }
+};
+class eagle:publc Bird{
+  public:
+  void eat(){
+    std::cout<<"Eagle is eating\n"<<endl;
+  }
+   void fly(){
+    std::cout<<"Eagle is flying\n"<<endl;
+  }
+};
+#endif //Bird_h
