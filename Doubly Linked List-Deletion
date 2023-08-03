@@ -1,0 +1,193 @@
+//----DOUBLY LINKED LIST--Insertion-deletion//
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*next;
+  Node*prev;
+  Node(){
+    this->data=0;
+    this->next=NULL;
+    this->prev=NULL;
+  }
+  Node(int data){
+    this->data=data;
+    this->next=NULL;
+    this->prev=NULL;
+  }
+  ~Node(){
+    cout<<"Node with this value:"<<this->data<<" deleted"<<endl;
+  }
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp->next;
+  }
+}
+int getLength(Node*&head){
+  int len=0;
+  Node*temp=head;
+  while(temp!=NULL){
+    temp=temp->next;
+    len++;
+  }
+  return len;
+}
+void insertAthead(Node*&head,Node*&tail,int data){
+  //agr linked list empty hh toh
+  if(head==NULL){
+  Node*newNode=new Node(data);
+  head=newNode;
+  tail=newNode;
+  return;
+  }
+  //agr linked list empyty nii hh toh
+  //step1:create a new node
+  Node*newNode=new Node(data);
+  //step2:
+  newNode->next=head;
+  //step3
+  head->prev=newNode;
+  //step4:
+  head=newNode;
+}
+void insertAttail(Node*&head,Node*&tail,int data){
+  //agr linked list empty hh toh
+  if(head==NULL){
+    Node*newNode=new Node(data);
+    head=newNode;
+    tail=newNode;
+    return;
+  }
+  //agr linked list empty nii hh toh
+  //step1:create a new node
+  Node*newNode=new Node(data);
+  //step2:
+  tail->next=newNode;
+  //step3:
+  newNode->prev=tail->next;
+  //step4:
+  tail=newNode;
+}
+void insertAtposition(int position,int data,Node*&head,Node*&tail){
+  //agr linked list empty hh toh
+  if(head==NULL){
+   Node*newNode=new Node(data);
+  head=newNode;
+  tail=newNode;
+  return;
+  }
+  //agr linked list empty nii hh toh
+  if(position==1){
+    insertAthead(head,tail,data);
+    return;
+  }
+  int len= getLength(head);
+  if(position>len){
+    insertAttail(head,tail,data);
+    return;
+  }
+  //insertion at middle
+  //step1:find prev and curr
+  int i=1;
+  Node*prevNode=head;
+  while(i<position-1){
+  prevNode=prevNode->next;
+  i++;
+  }
+  Node*curr=prevNode->next;
+//step2:create a new node
+Node*newNode=new Node(data);
+//step3:
+prevNode->next=newNode;
+//step4
+newNode->prev=prevNode;
+//step 5
+curr->prev=newNode;
+//step 6
+newNode->next=curr;
+}
+void deleteFromPos(int position,Node*&head,Node*&tail){
+  if(head==NULL){
+    cout<<"Linked Lisrt is empty"<<endl;
+    return ;
+  }
+  if(head->next==NULL){
+    //single node
+    Node*temp=head;
+    head=NULL;
+    tail=NULL;
+    delete temp;
+    return;
+  }
+  if(position==1){
+    //want to delete the first node
+    Node*temp=head;
+    head=head->next;
+    head->prev=NULL;
+    temp->next=NULL;
+    delete temp;
+    return;
+  }
+  int len=getLength(head);
+  if(position>len){
+    cout<<"please enter the valid position "<<endl;
+    return ;
+  }
+  if(position==len){
+    // delete last node
+    Node*temp=tail;
+    tail=tail->prev;
+    tail->prev=NULL;
+    tail->next=NULL;
+    delete temp;
+    return;
+  }
+  //delete node from the middle of the linked list
+  //step1:find left,curr,right
+  int i=1;
+  Node*left=head;
+  while(i<position-1){
+    left=left->next;
+    i++;
+  }
+  Node*curr=left->next;
+  Node*right=curr->next;
+  //step2:
+  left->next=right;
+  //step 3:
+  right->prev=left;
+  //step4:
+  curr->next=NULL;
+  curr->prev=NULL;
+  delete curr;
+}
+int main(){
+  //create Objects Dynamaically
+Node*first=new Node(10);
+Node*second=new Node(20);
+Node*third=new Node(30);
+Node*head=first;
+Node*tail=third;
+first->next=second;
+second->prev=first;
+second->next=third;
+third->prev=second;
+print(head);
+cout<<endl;
+insertAthead(head,tail,101);
+print(head);
+cout<<endl;
+insertAttail(head,tail,120);
+print(head);
+cout<<endl;
+insertAtposition(4,109,head,tail);
+print(head);
+cout<<endl;
+deleteFromPos(3,head,tail);
+print(head);
+return 0;
+}
