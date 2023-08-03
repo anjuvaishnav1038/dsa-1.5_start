@@ -1,0 +1,67 @@
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*next;
+  Node(){
+    this-> data=0;
+    this->next=NULL;
+  }
+  Node(int data){
+    this->data=data;
+    this->next=NULL;
+  }
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+      cout<<temp->data<<" ";
+      temp=temp->next;
+  }
+}
+//I want to insert node at the head of the Linked List
+void insertAthead(Node*&head,Node*&tail,int data){
+  //check for empty linked list
+  if(head==NULL){
+   Node *newNode=new Node(data);
+   head=newNode;
+   tail=newNode;
+   return;
+  }
+  //step1-create new node
+  Node*newNode=new Node(data);
+  //step 2-newnode ko head sey attach krdo
+  newNode->next=head;
+  //step3-head hmesha linked lisst ki starting drshata hh
+  head=newNode;
+}
+//I Want to insert the node right at the end of the linked list
+void insertAttail(Node*&head,Node*&tail,int data){
+   //check for empty linked list
+  if(head==NULL){
+   Node *newNode=new Node(data);
+   head=newNode;
+   tail=newNode;
+   return;
+  }
+//step 1:Create a new node
+Node*newNode=new Node(data);
+//step2:connect with tail node
+tail->next=newNode;
+//step3:update tail
+tail=newNode;
+}
+int main(){
+  //dyanamic object creation
+  // Node *head=new Node(10);
+  Node *head=NULL;
+  Node*tail=NULL;
+  insertAthead(head,tail,20);
+  insertAthead(head,tail,50);
+  insertAthead(head,tail,60);
+  insertAthead(head,tail,90);
+  insertAttail(head,tail,75);
+  print(head);
+  return 0;
+}
