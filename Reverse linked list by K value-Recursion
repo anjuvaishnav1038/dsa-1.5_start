@@ -1,0 +1,84 @@
+//-----Reverse linked list by k value-----//
+#include<iostream>
+using namespace std;
+class Node{
+public:
+int data;
+Node*next;
+Node(){
+  this->data=0;
+  this->next=NULL;}
+  Node(int data){
+    this->data=data;
+    this->next=NULL;
+  }
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp->next;
+  }
+}
+int getLength(Node*&head){
+  int len=0;
+  Node*temp=head;
+  while(temp!=NULL){
+    temp=temp->next;
+    len++;
+  }
+  return len;
+}
+Node*reverseKnodes(Node*&head,int k){
+//agr linked list empty hh toh
+if(head==NULL)
+{
+cout<<"Linked list is empty"<<endl;
+return NULL;
+}
+int len=getLength(head);
+if(k>len){
+cout<<"enter valid value for k"<<endl;
+return head;
+}
+//it means number of nodes int he linked list is >=k
+// Step 1:Reverse first k nodes of the linkesd list
+Node*prev=NULL;
+Node*curr=head;
+Node*forward =curr->next;
+int count=0;
+while(count<k){
+  forward=curr->next;
+  curr->next=prev;
+  prev=curr;
+  curr=forward;
+  count++;
+}
+//step 2:Recursive call
+//check kro agey ki node bchi hh bhi ki nii 
+if(forward!=NULL){
+  //we still left nodes to reverse
+  //toh inka answer recursion nikalkey de dega
+ head->next= reverseKnodes(forward,k);
+}
+//Step c:return head of the modified Linked list
+return prev;
+}
+int main(){
+Node*first=new Node(10);
+Node*second=new Node(20);
+Node*third=new Node(30);
+Node*fourth=new Node(40);
+Node*head=first;
+Node*tail=fourth;
+first->next=second;
+second->next=third;
+third->next=fourth;
+fourth->next=NULL;
+print(head);
+cout<<endl;
+cout<<"reverese k nodes"<<endl;
+head=reverseKnodes(head,3);
+print(head);
+return 0;
+}
