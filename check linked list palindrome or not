@@ -1,0 +1,104 @@
+//----Check wheather the linkedlist ios palindrome or not---//
+#include<iostream>
+using namespace std;
+class Node{
+public:
+int data;
+Node*next;
+Node(){
+  this->data=0;
+  this->next=NULL;
+}
+Node(int data){
+  this->data=data;
+  this->next=NULL;
+}
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp->next;
+  }
+}
+Node*reverse(Node*&head){
+  Node*prev=NULL;
+  Node*curr=head;
+  Node*forward=curr->next;
+  while(curr!=NULL){
+    forward=curr->next;
+    curr->next=prev;
+    prev=curr;
+    curr=forward;
+  }
+  return prev;
+}
+bool checkPalindrome(Node*&head){
+  //agr linked list hi khali hh 
+  if(head==NULL)
+  {
+    cout<<"linked list is empty"<<endl;
+    return true;
+  }
+  //agr single node
+  if(head->next==NULL){
+    return true;
+  }
+  //agle ekk sey jada node ho toh
+  //step 1:find the middle node
+  Node*slow=head;
+  Node*fast=head;
+  while(fast!=NULL){
+    fast=fast->next;
+    if(fast!=NULL){
+      fast=fast->next;
+      slow=slow->next;
+    }
+  }
+  //slow pointing to the middle node
+
+ //step2:reverse linked list after middle node
+ Node*reverseLLkahead=reverse(slow->next);
+ //step3:slow  ke agey reverse linked list ka head lga do
+ slow->next=reverseLLkahead;
+ //step 4:start comparision
+  Node*temp1=head;
+  Node*temp2=reverseLLkahead;
+  while(temp2!=NULL){
+    if(temp1->data!=temp2->data){
+      //not a palindrome
+      return false;
+    }
+    //if data is equal,then agey bdh jayo
+    else{
+    temp1=temp1->next;
+    temp2=temp2->next;
+  }
+  }
+  return true;
+  }
+int main(){
+  Node*first=new Node(10);
+  Node*second=new Node(20);
+  Node*third=new Node(30);
+  Node*fourth=new Node(30);
+  Node*fifth=new Node(20);
+  Node*sixth=new Node(10);
+  Node*head=first;
+  first->next=second;
+  second->next=third;
+  third->next=fourth;
+  fourth->next=fifth;
+  fifth->next=sixth;
+  sixth->next=NULL;
+  print(head);
+  cout<<endl;
+  bool isPalindrome=checkPalindrome(head);
+  if(isPalindrome){
+    cout<<"Linked list is the valid palindrome"<<endl;
+  }
+  else{
+    cout<<"Linked list is not the palindrome"<<endl;
+  }
+  return 0;
+}
