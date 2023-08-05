@@ -1,0 +1,82 @@
+//---sort 0's,1's,2's in the Linked List----//
+//---If data replacement is allowed---//
+#include<iostream>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*next;
+  Node(){
+    this->data=0;
+    this->next=NULL;
+  }
+  Node(int data){
+    this->data=data;
+    this->next=NULL;
+  }
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp->next;
+  }
+}
+void sortZeroOneTwo(Node*&head){
+  //find count of zero,one and two
+  int zero =0;
+  int one=0;
+  int two=0;
+  Node*temp=head;
+  while(temp!=NULL){
+    if(temp->data==0)
+      zero++;
+    if(temp->data==1)
+    one++;
+    if(temp->data==2)
+    two++;
+    temp=temp->next;
+  }
+  //step2:fill the 0,1,2 in the original linked list
+  temp=head;
+  while(temp!=NULL){
+    //fill zeroes
+    while(zero--){
+      temp->data=0;
+      temp=temp->next;
+    }
+    //fill ones
+   while(one--){
+    temp->data=1;
+    temp=temp->next;
+   }
+   while(two--){
+    temp->data=2;
+    temp=temp->next;
+   }
+    //fill 2's
+  }
+
+}
+int main(){
+  Node*first=new Node(2);
+  Node*second=new Node(1);
+  Node*third=new Node(1);
+  Node *fourth=new Node(0);
+  Node*fifth=new Node(0);
+  Node*sixth=new Node(2);
+  Node *seventh=new Node(1);
+  Node*head=first;
+  first->next=second;
+  second->next=third;
+  third->next=fourth;
+  fourth->next=fifth;
+  fifth->next=sixth;
+  sixth->next=seventh;
+  seventh->next=NULL;
+  print(head);
+  cout<<endl;
+  sortZeroOneTwo(head);
+  print(head);
+  return 0;
+}
