@@ -34,6 +34,12 @@ Node*reverse(Node*head){
   return prev;
 }
 Node*solve(Node*&head1,Node*&head2){
+  if(head1==NULL){
+    return head2;
+  }
+  if(head2==NULL){
+    return head1;
+  }
   //step1:reverse both linked list
   head1=reverse(head1);
   head2=reverse(head2);
