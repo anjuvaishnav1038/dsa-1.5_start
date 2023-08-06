@@ -1,0 +1,120 @@
+//----Sort 0's,1's,2's by pointer replacement---//
+#include<iostream>
+using namespace std;
+class Node{
+public:
+int data;
+Node*next;
+Node(){
+  this->data=0;
+  this->next=NULL;
+}
+Node(int data){
+  this->data=data;
+  this->next=NULL;
+}
+};
+void print(Node*&head){
+  Node*temp=head;
+  while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp->next;
+  }
+}
+Node*sort2(Node*&head){
+  //create Dummy Nodes
+//zero dummy Node
+Node*zeroHead=new Node(-1);
+Node*zerotail=zeroHead;
+//one dummy Node
+Node*oneHead=new Node(-1);
+Node*onetail=oneHead;
+//two dummy Node
+Node*twoHead=new Node(-1);
+Node*twotail=twoHead;
+//traverse the original linked list
+Node*curr=head;
+while(curr!=NULL){
+  if(curr->data==0){
+  //Take out the zero wali node
+   Node*temp=curr;
+   curr=curr->next;
+   temp->next=NULL;
+  //append the zero node in zerohead Linked List
+  zerotail->next=temp;
+  zerotail=temp;
+  }
+ else if(curr->data==1){
+  //Take out the one wali node
+   Node*temp=curr;
+   curr=curr->next;
+   temp->next=NULL;
+  //append the one node in ondhead Linked List
+  onetail->next=temp;
+  onetail=temp;
+ }
+ else if(curr->data==2){
+  //Take out the two wali node
+   Node*temp=curr;
+   curr=curr->next;
+   temp->next=NULL;
+  //append the two node in twohead Linked List
+  twotail->next=temp;
+  twotail=temp;
+ }
+}
+// abb yha prr teno linked list ready hh zero ,one and two;
+
+//join krdo
+
+//remove dummy node that were created earlier
+//Modify one wali list
+Node*temp=oneHead;
+oneHead=oneHead->next;
+temp->next=NULL;
+delete temp;
+//modify two wali list
+temp=twoHead;
+twoHead=twoHead->next;
+temp->next=NULL;
+delete temp;
+//join list
+if(oneHead!=NULL){
+  //one wali list is non empty
+  zerotail->next=oneHead;
+  if(twoHead!=NULL){
+    onetail->next=twoHead;
+  }
+}
+else{
+  //one wali list empty hh
+  if(twoHead!=NULL){
+    zerotail->next=twoHead;
+  }
+}
+//remove krna hh zerohead dummy node
+temp=zeroHead;
+zeroHead=zeroHead->next;
+temp->next=NULL;
+delete temp;
+//return head of the modiefied linked list
+return zeroHead;
+}
+int main(){
+Node*first=new Node(0);
+Node*second=new Node(2);
+Node*third=new Node(0);
+Node*fourth=new Node(0);
+Node*fifth=new Node(1);
+Node*head=first;
+first->next=second;
+second->next=third;
+third->next=fourth;
+fourth->next=fifth;
+fifth->next=NULL;
+print(head);
+cout<<endl;
+head=sort2(head);
+print(head);
+return 0;
+}
