@@ -1,0 +1,48 @@
+//---Intersection of two linked list --LEETCODE---//
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode*a=headA;
+        ListNode*b=headB;
+        //jbb tkk a ka nxt ya phir b ka next null nhi ho jata tb tkk hmm chlte rhengey
+        while(a->next && b->next){
+            if(a==b){
+                return a;
+            }
+        a=a->next;
+        b=b->next;
+        }
+        //agr a ka next null  ho gya iska mtlb B Linked list bdi hh and vice versa
+        if(a->next==NULL){
+             //we need to find out how much bigger it is
+             int blen=0;
+             while(b->next){
+                 blen++;
+                 b=b->next;
+             }
+           while(blen--){
+               headB=headB->next;
+           }
+        }
+        int alen=0;
+          if(b->next==NULL){
+             //we need to find out how much bigger it is
+             
+             while(a->next){
+                 alen++;
+                 a=a->next;
+             }}
+           while(alen--){
+               headA=headA->next;
+           }
+           while(headA!=headB){
+               headA=headA->next;
+                headB=headB->next;
+           
+           }
+        return headA;
+        }
+
+        
+    
+};
