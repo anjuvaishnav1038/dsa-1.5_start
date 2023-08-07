@@ -1,0 +1,63 @@
+//sort list--LEETCODE--//
+class Solution {
+public:
+    ListNode*findmid(ListNode*&head){
+        ListNode*slow=head;
+        ListNode*fast=head->next;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+      ListNode* merge(ListNode* Left, ListNode* Right) {
+        //make the dummy node
+        ListNode*ans=new ListNode(-1);
+        ListNode*tail=ans;
+        while(Left!=NULL && Right!=NULL){
+            if(Left->val<Right->val){
+               tail->next=Left;
+               tail=Left;
+               Left=Left->next;
+            }
+            else{
+                tail->next=Right;
+                tail=Right;
+                Right=Right->next;
+            }
+        }
+        if(Left==NULL){
+            tail->next=Right;
+        }
+        else{
+            tail->next=Left;
+        }
+        return ans->next;
+    }
+    ListNode* sortList(ListNode* head) {
+        //base condition or Edge cases
+        if(head==0 ||head->next ==0)
+        return head;
+        //Break the list into two halves using mid
+        ListNode*mid=findmid(head);//vhi pyarri wali approach sey
+        // Break the list into two halves
+
+        // ---LEFT PART--- //
+        ListNode*Left=head;
+
+        // ---RIGHT PART--- // 
+        ListNode*Right=mid->next;
+
+        //to make them separate list we have to put mid->next==NULL
+        mid->next=0;
+
+        //---Sort the lists Recursively---//
+        //sort the left list
+        Left=sortList(Left);
+        //sort the right list
+        Right=sortList(Right);
+        //merge both left and right lists
+        ListNode*mergeLL=merge(Left,Right);
+        return mergeLL;
+    }
+};
