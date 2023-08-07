@@ -7,6 +7,7 @@ public:
            // Your code here
            Node*first=head;
            Node*second=head;
+//<n tkk isliye chla rhe kyuki hmm head pe toh phle hi khde hh
            for(int i=1;i<n;i++){
                second=second->next;
          //AGR iterate krte krte second hi null ko point krne lgg jaye
