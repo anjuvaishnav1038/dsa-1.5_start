@@ -1,0 +1,34 @@
+//---Flatten linked list--using recursion--GFG--//
+    
+  Node*merge(Node*a,Node*b){
+      //base case
+      if(a==0)
+      return b;
+      if(b==0)
+      return a;
+      if(a==0 && b==0)
+      return NULL;
+      Node*ans=0;
+          if(a->data<b->data){
+              ans=a;
+              a->bottom=merge(a->bottom,b);
+          }
+          else{
+              ans=b;
+              b->bottom=merge(a,b->bottom);
+          }
+          return ans;
+      }
+      
+   
+ 
+Node *flatten(Node *root)
+{
+    if(root==NULL){
+    return NULL;
+}
+Node*mergeLL=merge(root,flatten(root->next));
+return mergeLL;
+}
+
+
