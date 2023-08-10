@@ -1,0 +1,26 @@
+//--Copy random pointer--LEETCODE--//
+class Solution {
+public:
+    Node*helper(Node*head,unordered_map<Node*,Node*>&mp){
+        if(head==0)
+        return 0;
+        //nyi node bnado
+        Node*newHead=new Node(head->val);
+        //hmm nyi node bnane ke sath sath hmmpurane ki entry ke sath sath
+        //nyi node ki entry store krenge
+        mp[head]=newHead;
+        //bhii new head hmne bnaya tha abb new head ka next kya hoga
+        //wo abb recursion solve krke dey dega hme
+        newHead->next=helper(head->next,mp);
+        //pura copy krne ke baad abb hmm random links lgate hh
+        if(head->random){
+            newHead->random=mp[head->random];
+        }
+        return newHead;
+    }
+    Node* copyRandomList(Node* head) {
+        //ye map old node --->new nod ki mapping store krega
+        unordered_map<Node*,Node*>mp;
+    return helper(head,mp);
+    }
+};
