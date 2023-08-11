@@ -1,0 +1,42 @@
+//--COPY LINKED LIST WITH RANDOM POINTER--LEETCODE--WITHOUT USING MAP--//
+class Solution {
+public:
+    Node*helper(Node*head){
+        //space complexity=O(1)
+        //iskam mtlb head null hh
+        if(!head)
+        return 0;
+        //Step1:CLONE A->A'
+        Node*it=head;//iterate over old head
+        while(it){
+            Node*clonedNode=new Node(it->val);
+            clonedNode->next=it->next;
+            it->next=clonedNode;
+            it=it->next->next;
+        }
+        //Step 2:we have to assign random links of A' with thw help of  oldNode
+        it=head;
+        while(it){
+            Node*clonedNode=it->next;
+            clonedNode->random=it->random?it->random->next:nullptr;
+            it=it->next->next;
+
+        }
+        //step3:Detach A' from  A
+        it=head;
+        Node*clonedHead=it->next;
+        while(it){
+            Node*cloneNode=it->next;
+            it->next=it->next->next;
+            if(cloneNode->next){
+                cloneNode->next=cloneNode->next->next;
+            }
+            it=it->next;
+        }
+        return clonedHead;
+
+    }
+    Node* copyRandomList(Node* head) {
+       return helper(head); 
+    }
+};
