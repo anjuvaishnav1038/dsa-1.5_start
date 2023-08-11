@@ -1,0 +1,36 @@
+//Rotate List by k--LEETCODE--//
+class Solution {
+public:
+    int getLength(ListNode*&head){
+        int len=0;
+       ListNode*temp=head;
+        while(temp){
+         temp=temp->next;
+            len++;
+        }
+        return len;
+    } 
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(!head){
+            return 0;
+        }
+        int len=getLength(head);     
+        int actualRotateK=(k%len);
+        if (actualRotateK==0)
+        return head;
+        int newLastNodePosition=len-actualRotateK-1;
+        ListNode*newHead=nullptr;
+        ListNode*newLastNode=head;  
+        for(int i=0;i<newLastNodePosition;i++){
+            newLastNode=newLastNode->next;
+        } 
+        newHead=newLastNode->next;
+        newLastNode->next=0;
+        ListNode*it=newHead;
+        while(it->next){
+        it=it->next;
+        }
+        it->next=head;
+        return newHead;
+    }
+};
