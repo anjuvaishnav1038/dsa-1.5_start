@@ -1,0 +1,62 @@
+// ----IMPLEMNTATION OF TWO STACK FROM ONE ARRAY--- //
+#include<iostream>
+using namespace std;
+class Stack{
+//PROPERTIES
+public:
+int *arr;
+int size;
+int top1;
+int top2;
+Stack(int size){
+  arr=new int[size];
+  this->top1=-1;
+  this->top2=size;
+  this->size=size;
+}
+//BEHAVIOUR
+void push1(int data){
+if(top2-top1==1){
+  //Space not available
+  cout<<"OVERFLOW"<<endl;
+}
+else{
+  top1++;
+  arr[top1]=data;
+}
+}
+void pop1(){
+  if(top1==-1){
+    //Stack Empty
+    cout<<" UNDERFLOW in stack1 "<<endl;
+  }
+  else{
+    //stack not empty
+    top1--;
+  }
+}
+void push2(int data){
+if(top2-top1==1){
+  //Space not available
+  cout<<"OVERFLOW"<<endl;
+}
+else{
+  top2--;
+  arr[top2]=data;
+}
+}
+void pop2(){
+if(top2==size){
+  //stack2 is empty
+ cout<<"UNDERFLOW in stack2"<<endl;
+}
+else{
+  //stack2 is not empty
+top2++;
+}
+}
+
+};
+int main(){
+  return 0;
+}
