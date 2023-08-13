@@ -1,0 +1,19 @@
+//---Printing the stack---//
+#include<iostream>
+#include<stack>
+using namespace std;
+int main(){
+  //creating the stack
+  stack<int>st;
+  //insertion in the stack
+  st.push(1);
+  st.push(2);
+  st.push(3);
+  //printing the stack
+  while(!st.empty()){
+    cout<<st.top()<<" ";
+    st.pop();
+  }
+  cout<<endl;
+  return 0;
+}
