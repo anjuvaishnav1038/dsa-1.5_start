@@ -1,0 +1,78 @@
+//---Stack using Array---//
+#include<iostream>
+using namespace std;
+class Stack{
+private:
+//properties
+int *arr;
+int size;
+int top;//index ko drshata hh arr ki
+public:
+Stack(int size){
+  arr=new int[size];
+  this->top=-1;
+  this->size=size;
+}
+//behaviour and functions
+void push(int data){
+if(size-top>1){
+  //space available
+  //insert
+  top++;
+  arr[top]=data;
+}
+else{
+  //space not available
+  cout<<"stack not available"<<endl;
+}
+}
+void pop(){
+if(top==-1){
+  //stack is empty
+  cout<<"stack underflow can't delelet elemnt"<<endl;
+}
+else{
+  //stack not empty
+  top--;
+}
+}
+int gettop(){
+if(top==-1){
+  cout<<"There is no elemnt in the stack"<<endl;
+}
+else{
+  return arr[top];
+}
+}
+//Number of valid Elemnts present in the stack
+int getsize(){
+return top+1;
+}
+bool isempty(){
+ if(top==-1){
+  //stack empty
+  return true;
+ }
+ else{
+  return false;
+ }
+}
+};
+int main(){
+  //Creation
+  Stack s(10); //stack size is 10
+  //insertion
+  s.push(10);
+  s.push(20);
+  s.push(30);
+  s.push(40);
+  s.push(50);
+ cout<<"Size of the stack "<<s.getsize()<<endl;
+ while(!s.isempty()){
+  cout<<s.gettop()<<" ";
+  s.pop();
+ }
+ cout<<endl;
+ cout<<"Size of the stack "<<s.getsize()<<endl;
+  return 0;
+}
