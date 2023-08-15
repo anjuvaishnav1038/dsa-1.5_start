@@ -1,0 +1,44 @@
+//---VALID PARENTHESIS IN THE STACK-LEETCODE--//
+class Solution {
+public:
+    bool isValid(string s) {
+        //creation of the stack
+        stack<char>st;
+        //iterating upon the s string
+        for(int i=0;i<s.length();i++){
+            //store in the character to check every character
+            char ch=s[i];
+            //agr ch opening bracket aye toh stack mey push krdo
+           if(ch=='('||ch=='{'||ch=='['){
+               st.push(ch);
+           }
+            //agr ch closing bracket aye toh smabhalo
+            else{
+                //agr closing available hh or stack abb tkk khali nhi hua
+                if(!st.empty()){
+                    //toh stack key top elemnt ko check  krlo
+                    char topElement=st.top();
+                    if(ch==')' && topElement=='(')
+                    st.pop();
+                    else if(ch=='}' && topElement=='{')
+                    st.pop();
+                    else if(ch==']' && topElement=='[')
+                    st.pop();
+                    else{
+                    return false;
+                }
+                }
+                //agr closing available hh or stack khali pda hh
+                else{
+                    //toh invalid case hh
+                    return false;
+                }
+            }
+        }
+        //agr sbb krne key badd stack khali hogya hh toh
+        if(st.empty())
+        return true;
+        else
+        return false;
+    }
+};
