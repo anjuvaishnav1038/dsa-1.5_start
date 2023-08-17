@@ -1,0 +1,40 @@
+//--Longest Valid Parenthesis --LEETCODE--//
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        //ekk stack create krlo
+        //iss stack mey hmm index  store krayenge string characters ka according to the situation
+        stack<int>st;
+        //by default stack mey -1 rhega
+        st.push(-1);
+
+        int max_length=0;
+        // ekk loop chalana pdega puri string prr traverse krne key liye
+        for(int i=0;i<s.length();i++){
+            //phir hrr character ko check krne key liye usko store krna jruri hh
+            char ch=s[i];
+          //now check wheather the character is open bracket ya phir close bracket hh
+          if(ch=='('){
+              //agr open bracket aye toh stack mey push krddo uska index
+              st.push(i);
+          }
+          else{
+              //agr ch==')' toh hmare 2 cases create hote 
+              //step 1:pop krdo elemnt ko
+              st.pop();
+              //case 1:stack empty hh
+              if(st.empty()){
+                  //toh stack mey current index insert krdo
+                  st.push(i);
+              }
+             else{
+              //case 2:stack empty nhi hh
+              //length find krlo
+              int len=i-st.top();
+              max_length=max(len,max_length);
+          }
+          }
+        }
+    return max_length;
+    }
+};
