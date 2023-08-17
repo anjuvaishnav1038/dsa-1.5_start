@@ -1,0 +1,37 @@
+//----MIN_STACK==>LEETCODE----//
+class MinStack {
+public:
+    //make the pair of vector to store the actual value of the stack and minimum value of the stack 
+    vector<pair<int,int>>st;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+       //case1:Jbb hmara vector empty hh
+       //empty wale case mey actual value bhi yhi jayegi or minimum elemnt bhi yhi jayega
+       if(st.empty()){
+           pair<int,int>p=make_pair(val,val);
+           //vector mey dall do 
+           st.push_back(p);
+       }
+       //case2:Jbb hmara vector non-empty hh 
+       else{
+           pair<int,int>p=make_pair(val,min(val,st.back().second));
+           st.push_back(p);
+       }
+    }
+    void pop() {
+       st.pop_back(); 
+    }
+    
+    int top() {
+        //jo vector ka last elemnt hoga bhi hoga basically hmara stack ka top element
+      return  st.back().first;
+    }
+    
+    int getMin() {
+        //minimum elemnt stack ke top prr milega
+        return st.back().second;
+    }
+};
