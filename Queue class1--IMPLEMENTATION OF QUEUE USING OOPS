@@ -1,0 +1,94 @@
+//--Implementation of Queue using OOPS--//
+#include<iostream>
+using namespace std;
+class Queue{
+public:
+int front;
+int rear;
+int*arr;
+int size;
+//constructor
+Queue(int size){
+  this->size=size;
+  this->arr=new int[size];
+  this->front=0;
+  this->rear=0;
+  }
+//fuctions and properties
+//push function
+void push(int data){
+  //check wheather queue is full or not
+  if(rear==size){
+    cout<<"Queue is full"<<endl;
+  }
+  else{
+    arr[rear]=data;
+    rear++;
+  }
+}
+//pop function
+void pop(){
+  //check wheather queue is empty or not
+  if(front==rear){
+    cout<<"Queue is empty";
+  }
+  else{
+    arr[front]=-1;
+    front++;
+    //agr front ko agey krte time front rear key equal hogya toh
+    if(front==rear){
+      //front->0
+      //rear->0
+      front=0;
+      rear=0;
+    }
+  }
+}
+//GetFront() function in the Queue
+int getFront(){
+  //check kro khi queue empty toh nhi
+  if(front==rear){
+    cout<<"Queue is empty"<<endl;
+    return -1;
+  }
+  else{
+    return arr[front];
+  }
+}
+//isEmpty() function in the Queue
+bool isEmpty(){
+  if(front==rear){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+//GetSize function
+int getSize(){
+  return rear-front;
+
+}
+};
+int main(){
+  //Queue creation
+  Queue q(10);
+
+  q.push(5);
+  q.push(15);
+  q.push(25);
+  q.push(55);
+  
+  cout<<"Size of queue is "<<q.getSize()<<endl;
+  q.pop();
+  cout<<"Size of queue is "<<q.getSize()<<endl;
+
+  if(q.isEmpty()){
+    cout<<"Queue is empty"<<endl;
+  }
+  else{
+    cout<<"Queue is not empty"<<endl;
+  }
+  cout<<"front elemnt is "<<q.getFront()<<endl;
+  return 0;
+}
