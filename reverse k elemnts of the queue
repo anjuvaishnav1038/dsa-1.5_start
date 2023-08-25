@@ -1,0 +1,53 @@
+//---Reverse K elemnts of the Queue---//
+#include<iostream>
+#include<queue>
+#include<stack>
+using namespace std;
+void reverseKelementsQueue(queue<int>&q,int k){
+stack<int>s;
+int count=0;
+int n=q.size();
+// step1:stack mey k elemnts insert krdo
+while(!q.empty()){
+int element=q.front();
+q.pop();
+s.push(element);
+count++;
+if(count==k){
+  break;
+}
+}
+//step 2:stack sey queue mey vapas elemnt push krdo
+while(!s.empty()){
+  int temp=s.top();
+  q.push(temp);
+  s.pop();
+}
+//step 3: remaining queue ke elemnts ko pop krdo and againg push krdo queue mey
+//means push (n-k) elemnts from front to back of the queue
+count=0;
+while(!q.empty()){
+  int temp=q.front();
+  q.pop();
+  q.push(temp);
+  count++;
+  if(count==n-k){
+    break;
+  }
+}
+}
+int main(){
+  queue<int>q;
+  q.push(3);
+  q.push(6);
+  q.push(9);
+  q.push(12);
+  q.push(15);
+  cout<<"Printing the Queue element"<<endl;
+  reverseKelementsQueue(q,3);
+  while(!q.empty()){
+  cout<<q.front()<<" ";
+  q.pop();
+  }
+  return 0;
+}
