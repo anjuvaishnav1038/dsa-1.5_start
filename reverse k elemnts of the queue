@@ -7,6 +7,9 @@ void reverseKelementsQueue(queue<int>&q,int k){
 stack<int>s;
 int count=0;
 int n=q.size();
+ if(k<=0 || k>n){
+  return;
+ }
 // step1:stack mey k elemnts insert krdo
 while(!q.empty()){
 int element=q.front();
@@ -26,7 +29,7 @@ while(!s.empty()){
 //step 3: remaining queue ke elemnts ko pop krdo and againg push krdo queue mey
 //means push (n-k) elemnts from front to back of the queue
 count=0;
-while(!q.empty()){
+while(!q.empty()&& (n-k)!=0){
   int temp=q.front();
   q.pop();
   q.push(temp);
@@ -44,7 +47,7 @@ int main(){
   q.push(12);
   q.push(15);
   cout<<"Printing the Queue element"<<endl;
-  reverseKelementsQueue(q,3);
+  reverseKelementsQueue(q,4);
   while(!q.empty()){
   cout<<q.front()<<" ";
   q.pop();
