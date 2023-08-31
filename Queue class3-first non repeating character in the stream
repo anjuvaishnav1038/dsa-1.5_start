@@ -1,0 +1,35 @@
+//--first non repeating character in the stream--//
+#include<iostream>
+#include<queue>
+using namespace std;
+int main(){
+  string str="aabc";
+  string ans="";
+  int freq[26]={0};
+  //queue is required to keep track upon the characters
+  queue<char>q;
+  for(int i=0;i<str.length();i++){
+    char ch=str[i];
+    //frequency increase
+    freq[ch-'a']++;
+    //queue mey elemnt push krdo
+    q.push(ch);
+    //abb ans nikalo
+    while(!q.empty()){
+      //agr frequency queue ke first elemnt ki jada hh toh it means wo repeating elemnet hh
+      if(freq[q.front()-'a']>1){
+        //repeating element
+        q.pop();
+      }
+      else if(freq[q.front()-'a']==1){
+        ans.push_back(q.front());
+        break;
+      }
+    }
+    if(q.empty()){
+      ans.push_back('#');
+    }
+  }
+  cout<<"final ans is "<<ans<<endl;
+  return 0;
+}
