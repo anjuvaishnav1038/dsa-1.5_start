@@ -1,0 +1,36 @@
+//---Sliding window maximum---LEETCODE---//
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<int>dq;
+        vector<int>ans;
+
+        //first window traverse
+        for(int i=0;i<k;i++){
+            //chotte elemnt remove krdo
+            while(!dq.empty() && nums[i]>=nums[dq.back()]){
+                dq.pop_back();
+            }
+            //index insert krdo,so that we can check out of window
+            dq.push_back(i);
+        }
+        //store ans for firt window
+        ans.push_back(nums[dq.front()]);
+        //remining window ko procwss krdo
+        for(int i=k;i<nums.size();i++){
+            //out of window wale elemnts ko remove krdo
+            if(!dq.empty() && i-dq.front()>=k){
+                dq.pop_front();
+            }
+            //abb firse current elemnt ke liye chotte elents ko remove krna hh
+             while(!dq.empty() && nums[i]>=nums[dq.back()]){
+                dq.pop_back();
+            }
+            //index insert krdo,so that we can check out of window
+            dq.push_back(i);
+            //curent window ka ans store krna h
+            ans.push_back(nums[dq.front()]);
+        }
+        return ans;
+    }
+};
