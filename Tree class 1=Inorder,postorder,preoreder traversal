@@ -1,0 +1,105 @@
+
+#include<iostream>
+#include<queue>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node*left;
+    Node*right;
+    Node(int data){
+        this->data=data;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+Node*BuildTree(){
+    int data;
+    cout<<"ENTER DATA "<<endl;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    //make the root node
+    Node*root=new Node(data);
+    //make the left child of the root node
+    cout<<"Enter the data for the left node" <<data<<endl;
+    root->left=BuildTree();
+    //make the right child of this root node
+    cout<<"Enter thee Data for the Right Node "<<data<<endl;
+    root->right=BuildTree();
+    return root;
+}
+void LevelOrderTraversal(Node*root){
+    //intially queue bnalo
+    queue<Node*>q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+        Node*temp=q.front();
+         q.pop();
+        if(temp==NULL){
+           cout<<endl;
+           if(!q.empty()){
+               q.push(NULL);
+           }
+        }
+        else{
+            //c
+        cout<<temp->data<<" ";
+          //d
+        if(temp->left){
+            q.push(temp->left);
+        }
+        //e
+        
+        if(temp->right){
+           q.push(temp->right);
+       }
+       
+        }
+       
+    }
+}
+void InorderTraversal(Node*root){
+    //base case
+    if(root==NULL){
+        return;
+    }
+    //LNR
+    //L-->Left part mey jayo
+    //N-->Current Node ke data ko print krdo
+    //R-->Right part mey jayo
+    InorderTraversal(root->left);
+    cout<<root->data<<" ";
+    InorderTraversal(root->right);
+    
+}
+void PreOrderTraversal(Node*root)
+{  
+    //base case
+    if(root==NULL){
+        return;
+    }
+    //NLR
+    cout<<root->data<<" ";
+    PreOrderTraversal(root->left);
+    PreOrderTraversal(root->right);
+}
+void PostOrderTraversal(Node*root){
+    //base case
+    if(root==NULL){
+        return;
+    }
+    //LRN
+    PostOrderTraversal(root->left);
+    PostOrderTraversal(root->right);
+    cout<<root->data<<" ";
+}
+int main(){
+    Node*root=NULL;
+    root=BuildTree();
+    LevelOrderTraversal(root);
+    return 0;
+    
+}
