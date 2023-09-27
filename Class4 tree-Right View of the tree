@@ -1,0 +1,58 @@
+//---right view of the tree--//
+#include<iostream>
+#include<queue>
+#include<map>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*left;
+  Node*right;
+  Node(int data){
+    this->data=data;
+    this->left=left;
+    this->right=right;
+  }
+};
+Node*BuildTree(){
+  int data;
+  cin>>data;
+  if(data==-1){
+    return NULL;
+  }
+  //make the root node
+  Node*root=new Node(data);
+  //left node
+  cout<<"enter data for the left node"<<data<<endl;
+  root->left=BuildTree();
+  //RIGHT NODE
+  cout<<"Enter data for the right Node"<<data<<endl;
+  root->right=BuildTree();
+  return root;
+}
+void printrightView(Node*root,vector<int>&ans,int level){
+//base case
+if(root=NULL)
+{
+  return;
+}
+if(level==ans.size()){
+  ans.push_back(root->data);
+}
+//right
+printrightView(root->right,ans,level+1);
+//left
+printrightView(root->left,ans,level+1);
+
+}
+int main(){
+Node*root=BuildTree();
+vector<int>ans;
+int level=0;
+printrightView(root,ans,level);
+cout<<"printing the left view"<<endl;
+for(auto i:ans){
+  cout<<i<<" ";
+}
+return 0;
+}
