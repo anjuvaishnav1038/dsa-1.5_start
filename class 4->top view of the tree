@@ -1,0 +1,78 @@
+//---top view of the tree--//
+#include<iostream>
+#include<queue>
+#include<map>
+using namespace std;
+class Node{
+  public:
+  int data;
+  Node*left;
+  Node*right;
+  Node(int data){
+    this->data=data;
+    this->left=left;
+    this->right=right;
+  }
+};
+Node*BuildTree(){
+  int data;
+  cin>>data;
+  if(data==-1){
+    return NULL;
+  }
+  //make the root node
+  Node*root=new Node(data);
+  //left node
+  cout<<"enter data for the left node"<<data<<endl;
+  root->left=BuildTree();
+  //RIGHT NODE
+  cout<<"Enter data for the right Node"<<data<<endl;
+  root->right=BuildTree();
+  return root;
+}
+void printTopView(Node*root){
+  if(root==NULL){
+    return ;
+  }
+  //create map -jha prr hmm horizontal distance ke corrosponding uski node print kr rhe hh
+  map<int,int>topNode;
+
+  //levelOrder start  krdo
+  //we will store a pair  consisting of node and the Horizontal distance
+  queue<pair<Node*,int>>q;
+  //root ka horizontal distance zero hh
+ q.push(make_pair(root,0));
+
+while(!q.empty()){
+  //phili node nikal lo
+  pair<Node*,int>temp=q.front();
+  //phir usko delete krdo
+  q.pop();
+   Node*frontNode=temp.first;
+   //hd=horizontal distance
+  int hd=temp.second;
+  // logic
+  //jo bhi horizontal distance aya hh,check if answer  is already for that hd exist or not
+  if(topNode.find(hd)==topNode.end())//ye condition drshati hh ki iss wale horizontal distance ke liye koi bhi entry present ni hh
+  {
+    //create entry
+    topNode[hd]=frontNode->data;
+  }
+  if(frontNode->left){
+    q.push(make_pair(frontNode->left,hd-1));
+  }
+  if(frontNode->right){
+    q.push(make_pair(frontNode->right,hd+1));
+  }
+//abb apka answer store hua hoga map mey
+cout<<"printing the answer"<<endl;
+for(auto i:topNode){
+  cout<<i.first<<"->"<<i.second<<endl;
+}
+}
+} 
+int main(){
+Node*root=BuildTree();
+printTopView(root);
+return 0;
+}
